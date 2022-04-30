@@ -1,0 +1,14 @@
+/* Provide sufficient contrast against white background */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    @apply text-blue-500;
+  }
+
+  code {
+    @apply text-pink-600;
+  }
+}
