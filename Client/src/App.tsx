@@ -8,13 +8,15 @@ import './custom.css';
 
 const App: React.FC = () => {
     return (
-        <Layout>
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/counter' element={<Counter />} />
-                <Route path='/fetch-data' element={<FetchData />} />
-            </Routes>
-        </Layout>
+        <Layout
+            navLayout={
+                <>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/counter' element={<Counter />} />
+                    <Route path='/fetch-data' element={<FetchData />} />
+                </>
+            }
+        />
     );
 };
 

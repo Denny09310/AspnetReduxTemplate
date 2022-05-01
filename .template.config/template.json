@@ -14,7 +14,7 @@
         {
             "source": "./",
             "target": "./",
-            "exclude": [".template.config/**", "Client/node_modules/**", "Client/yarn.lock"],
+            "exclude": [".template.config/**", "Client/node_modules/**", "Client/yarn.lock", ".git/**", "bin/**", "obj/**"],
             "copyOnly": ["wwwroot/**"]
         }
     ],

@@ -1,12 +1,18 @@
 import React, { PropsWithChildren } from 'react';
+import { Route, Routes } from 'react-router';
 import { NavMenu } from '.';
 
-const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
+interface LayoutProps {
+    navLayout?: React.ReactNode;
+    fullScreenLayout?: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ navLayout, fullScreenLayout }) => {
     return (
-        <div>
-            <NavMenu />
-            <div className='container mx-auto'>{children}</div>
-        </div>
+        <Routes>
+            <Route element={<NavMenu />}>{navLayout}</Route>
+            {fullScreenLayout}
+        </Routes>
     );
 };
 

@@ -42,7 +42,8 @@
 			 Remove="$(SpaRoot)**"/>
 		<None
 			 Include="$(SpaRoot)**"
-			 Exclude="$(SpaRoot)node_modules\**"/>
+			 Exclude="$(SpaRoot)node_modules\**"
+			 Watch="false"/>
 	</ItemGroup>
 	<Target
 		 Name="DebugEnsureNodeEnv"

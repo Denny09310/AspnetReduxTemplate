@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home: React.FC = () => {
     return (
-        <div>
+        <div className='container mx-auto'>
             <h1 className='my-2 text-xl font-semibold'>Welcome to your new single-page application, built with:</h1>
             <ul>
                 <li>
