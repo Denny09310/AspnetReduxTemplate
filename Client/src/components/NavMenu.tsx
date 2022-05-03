@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { FaBars, FaClock, FaCloud, FaHome, FaTimes } from 'react-icons/fa';
-import logo192 from '../assets/logo-192.png';
+import { FaBars, FaClock, FaCloud, FaHome } from 'react-icons/fa';
+import applicationLogo from '../assets/application-logo.png';
 
 const applicationDrawerId = 'application-drawer';
 const navLinks = [
@@ -22,9 +22,11 @@ const navLinks = [
     },
 ];
 const NavMenu: React.FC = () => {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
     const navItems = navLinks.map(({ to, label, icon }) => (
         <li key={to}>
-            <NavLink to={to}>
+            <NavLink to={to} onClick={() => setIsDrawerOpen(false)}>
                 {icon}
                 {label}
             </NavLink>
@@ -33,7 +35,13 @@ const NavMenu: React.FC = () => {
 
     return (
         <div className='drawer'>
-            <input id={applicationDrawerId} type='checkbox' className='drawer-toggle' />
+            <input
+                id={applicationDrawerId}
+                type='checkbox'
+                className='drawer-toggle'
+                checked={isDrawerOpen}
+                onChange={(e) => setIsDrawerOpen(e.target.checked)}
+            />
             <div className='drawer-content flex flex-col'>
                 <nav className='navbar w-full bg-base-300'>
                     <div className='flex-none lg:hidden'>
@@ -43,7 +51,7 @@ const NavMenu: React.FC = () => {
                     </div>
                     <div className='mx-2 flex-1 px-2'>
                         <Link to='/' className='btn btn-ghost text-xl normal-case'>
-                            <img src={logo192} alt='application logo' className='h-10 w-10' />
+                            <img src={applicationLogo} alt='Application logo' className='h-8 w-auto' />
                         </Link>
                     </div>
                     <div className='hidden flex-none lg:block'>
