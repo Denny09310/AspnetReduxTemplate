@@ -1,6 +1,8 @@
 
-using Microsoft.EntityFrameworkCore;
-using MyReduxTemplate.Data;
+global using FastEndpoints;
+global using Microsoft.EntityFrameworkCore;
+global using MyReduxTemplate.Data;
+using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add Database References
-builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(opt
+    => opt.UseSqlite(connectionString));
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddFastEndpoints();
+builder.Services.AddSwaggerDoc(shortSchemaNames: true);
 
 var app = builder.Build();
 
@@ -21,15 +25,23 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+else
+{
+    app.UseDeveloperExceptionPage();
+    app.UseSwaggerUi3(s => s.ConfigureDefaults());
+    app.UseOpenApi();
+}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+app.UseAuthorization();
+app.UseFastEndpoints(c =>
+{
+    c.RoutingOptions = o => o.Prefix = "api";
+    c.ShortEndpointNames = true;
+});
 
 app.MapFallbackToFile("index.html");
 
