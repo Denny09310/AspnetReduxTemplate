@@ -3,6 +3,7 @@ global using FastEndpoints;
 global using Microsoft.EntityFrameworkCore;
 global using MyReduxTemplate.Data;
 using FastEndpoints.Swagger;
+using MyReduxTemplate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,7 @@ else
     app.UseDeveloperExceptionPage();
     app.UseSwaggerUi3(s => s.ConfigureDefaults());
     app.UseOpenApi();
+    app.ApplyDevelopmentMigrations();
 }
 
 app.UseHttpsRedirection();

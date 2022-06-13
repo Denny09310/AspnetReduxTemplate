@@ -7,7 +7,7 @@
 		<IsPackable>false</IsPackable>
 		<SpaRoot>Client\</SpaRoot>
 		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-		<SpaProxyServerUrl>https://localhost:5002</SpaProxyServerUrl>
+		<SpaProxyServerUrl>https://localhost:5002/</SpaProxyServerUrl>
 		<SpaProxyLaunchCommand>pnpm start</SpaProxyLaunchCommand>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>

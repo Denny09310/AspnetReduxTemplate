@@ -1,20 +1,25 @@
-import { defineConfig, loadEnv, PluginOption } from "vite";
+/* eslint-disable import/no-anonymous-default-export */
 import react from "@vitejs/plugin-react";
+import { defineConfig, loadEnv } from "vite";
+import checker from "vite-plugin-checker";
+import { createHtmlPlugin } from "vite-plugin-html";
 import mkcert from "vite-plugin-mkcert";
 import { VitePWA } from "vite-plugin-pwa";
+import pkg from "./package.json";
 
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
-  const getPlugins = () => {
-    const plugins: PluginOption[] = [react()];
+  // WARNING: The homepage must start with a slash "/"
+  const needCustmodeomBase =
+    process.env.NODE_ENV === "production" && pkg.homepage !== ".";
 
-    if (process.platform !== "linux") {
-      plugins.push(mkcert());
-    }
-
-    return plugins;
-  };
+  const webpackBase = needCustmodeomBase ? `${pkg.homepage}/` : "/";
+  const proxyTarget = process.env.ASPNETCORE_HTTPS_PORT
+    ? `https://localhost:${process.env.ASPNETCORE_HTTPS_PORT}`
+    : process.env.ASPNETCORE_URLS
+    ? process.env.ASPNETCORE_URLS.split(";")[0]
+    : "http://localhost:5001";
 
   return defineConfig({
     server: {
@@ -25,29 +30,41 @@ export default ({ mode }) => {
       port: parseInt(process.env.VITE_PORT),
       proxy: {
         "/api": {
-          target: process.env.ASPNETCORE_HTTPS_PORT
-            ? `https://localhost:${process.env.ASPNETCORE_HTTPS_PORT}`
-            : process.env.ASPNETCORE_URLS
-            ? process.env.ASPNETCORE_URLS.split(";")[0]
-            : "http://localhost:5001",
+          target: proxyTarget + webpackBase,
           secure: false,
         },
       },
     },
-    plugins: getPlugins().concat([
+    base: webpackBase,
+    build: {
+      outDir: "./build",
+    },
+    plugins: [
+      react(),
+      mkcert({
+        // mkcertPath: "path/to/mkcert", // <- Only if behind a proxy
+      }),
+      checker({ typescript: true }),
+      createHtmlPlugin({
+        template: "./index.html",
+        minify: true,
+        inject: {
+          data: {
+            title: pkg.htmlData.title,
+            themeColor: pkg.htmlData.themeColor,
+            base: webpackBase,
+          },
+        },
+      }),
       VitePWA({
-        includeAssets: [
-          "favicon.svg",
-          "favicon.ico",
-          "robots.txt",
-          "apple-touch-icon.png",
-        ],
+        includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
         manifest: {
-          name: "Vite",
-          short_name: "Vite",
-          description: "Vite",
+          scope: webpackBase,
+          name: pkg.htmlData.title,
+          short_name: pkg.htmlData.title,
+          description: pkg.htmlData.description,
           lang: "en",
-          start_url: "/",
+          start_url: "./",
           display: "standalone",
           background_color: "#fff",
           theme_color: "#fff",
@@ -71,6 +88,6 @@ export default ({ mode }) => {
           ],
         },
       }),
-    ]),
+    ],
   });
 };
