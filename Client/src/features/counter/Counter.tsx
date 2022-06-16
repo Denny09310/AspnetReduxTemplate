@@ -1,5 +1,5 @@
+import { useAppDispatch, useAppSelector } from '@app/hooks';
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { incrementCounter, selectCurrentCount } from './counterSlice';
 
 const Counter: React.FC = () => {

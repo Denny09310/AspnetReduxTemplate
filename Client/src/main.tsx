@@ -1,11 +1,11 @@
+import store from '@app/store';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { registerSW } from 'virtual:pwa-register';
-import reportWebVitals from './reportWebVitals';
-import store from './app/store';
 import toast from 'react-hot-toast';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { registerSW } from 'virtual:pwa-register';
 import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');

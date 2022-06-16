@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Routes } from 'react-router';
-import Home from './containers/Home';
+import { Route } from 'react-router';
 import { Layout } from './components';
+import Home from './containers/Home';
 import { Counter, FetchData } from './features';
 
 import './custom.css';
