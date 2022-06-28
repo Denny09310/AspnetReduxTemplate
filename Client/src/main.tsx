@@ -1,4 +1,4 @@
-import store from '@app/store';
+import store from '@/app/store';
 import { createRoot } from 'react-dom/client';
 import toast from 'react-hot-toast';
 import { Provider } from 'react-redux';

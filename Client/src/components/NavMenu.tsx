@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { FaBars, FaClock, FaCloud, FaHome } from 'react-icons/fa';
-import applicationLogo from '../assets/application-logo.png';
+import applicationLogo from '@/assets/application-logo.png';
 
 const applicationDrawerId = 'application-drawer';
 const navLinks = [

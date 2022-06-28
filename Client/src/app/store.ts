@@ -1,5 +1,5 @@
-import counterReducer from '@features/counter/counterSlice';
-import fetchDataApi from '@features/fetchData/fetchDataApi';
+import counterReducer from '@/features/counter/counterSlice';
+import fetchDataApi from '@/features/fetchData/fetchDataApi';
 import { Action, configureStore, isRejectedWithValue, Middleware, MiddlewareAPI, ThunkAction } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 

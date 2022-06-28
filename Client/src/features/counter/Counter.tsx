@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@app/hooks';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import React from 'react';
 import { incrementCounter, selectCurrentCount } from './counterSlice';
 

@@ -15,13 +15,9 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"types": ["node", "vite-plugin-pwa/client"],
-		"baseUrl": "src",
+		"types": ["node", "vite-plugin-pwa/client", "vite/client"],
 		"paths": {
-			"@/*": ["./"],
-			"@features/*": ["features/*"],
-			"@app/*": ["app/*"],
-			"@utils/*": ["utils/*"]
+			"@/*": ["./src/*"]
 		}
 	},
 	"include": ["src"],
