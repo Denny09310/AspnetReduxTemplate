@@ -1,9 +1,13 @@
 import React, { PropsWithChildren } from 'react';
-import { Route } from 'react-router';
+import { Routes, Route } from 'react-router';
 import { NavMenu } from '../components';
 
 const NavLayout: React.FC<PropsWithChildren> = ({ children }) => {
-    return <Route element={<NavMenu />}>{children}</Route>;
+    return (
+        <Routes>
+            <Route element={<NavMenu />}>{children}</Route>
+        </Routes>
+    );
 };
 
 export default NavLayout;
