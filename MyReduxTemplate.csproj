@@ -8,7 +8,7 @@
 		<SpaRoot>Client\</SpaRoot>
 		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
 		<SpaProxyServerUrl>https://localhost:5002/</SpaProxyServerUrl>
-		<SpaProxyLaunchCommand Condition=" '$(Configuration)' == 'Debug' ">pnpm start --debug</SpaProxyLaunchCommand>
+		<SpaProxyLaunchCommand Condition=" '$(Configuration)' == 'Debug' ">pnpm start --debug --host</SpaProxyLaunchCommand>
 		<SpaProxyLaunchCommand Condition=" '$(Configuration)' == 'Release' ">pnpm start</SpaProxyLaunchCommand>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
