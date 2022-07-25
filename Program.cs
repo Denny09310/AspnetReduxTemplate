@@ -11,8 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add Database References
-builder.Services.AddDbContext<ApplicationDbContext>(opt
-    => opt.UseSqlite(connectionString));
+builder.Services.AddSqlite<ApplicationDbContext>(connectionString);
 
 // Add services to the container.
 builder.Services.AddFastEndpoints();
@@ -29,8 +28,6 @@ if (!app.Environment.IsDevelopment())
 else
 {
     app.UseDeveloperExceptionPage();
-    app.UseSwaggerUi3(s => s.ConfigureDefaults());
-    app.UseOpenApi();
     app.ApplyDevelopmentMigrations();
 }
 
@@ -44,6 +41,9 @@ app.UseFastEndpoints(c =>
     c.RoutingOptions = o => o.Prefix = "api";
     c.ShortEndpointNames = true;
 });
+
+app.UseSwaggerUi3(s => s.ConfigureDefaults());
+app.UseOpenApi();
 
 app.MapFallbackToFile("index.html");
 
