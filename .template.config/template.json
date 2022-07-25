@@ -44,12 +44,6 @@
 			"description": "If specified, skips the automatic restore of the project on create.",
 			"defaultValue": "false"
 		},
-		"NoSpaFrontEnd": {
-			"type": "parameter",
-			"datatype": "bool",
-			"defaultValue": "false",
-			"description": "Avoids adding any of the node/spa files. Used for testing only."
-		},
 		"kestrelHttpPort": {
 			"type": "parameter",
 			"datatype": "integer",
@@ -155,6 +149,27 @@
 				"fallbackVariableName": "ProxyPortGenerated"
 			},
 			"replaces": "5002"
+		},
+		"JsPackageManager": {
+			"type": "parameter",
+			"datatype": "choice",
+			"defaultValue": "npm",
+			"description": "The package manager to use to install react dependencies",
+			"choices": [
+				{
+					"choice": "npm",
+					"description": "Use NPM as default package manager"
+				},
+				{
+					"choice": "yarn",
+					"description": "Use Yarn as default package manager"
+				},
+				{
+					"choice": "pnpm",
+					"description": "Use Pnpm as default package manager"
+				}
+			],
+			"replaces": "{JsPackageManager}"
 		}
 	},
 	"postActions": [

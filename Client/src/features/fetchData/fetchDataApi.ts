@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { getFetchBaseQuery } from '@/utils/apiBaseUrl';
+import { getFetchBaseQuery } from '@/utils/apiUrlUtils';
 import { WeatherForecast } from './fetchDataTypes';
 
 const fetchDataApi = createApi({

@@ -1,75 +1,81 @@
 {
-  "name": "myreduxtemplate",
-  "version": "0.1.2",
-  "private": true,
-  "homepage": ".",
-  "htmlData": {
-    "title": "My Redux Template",
-    "description": "A template for a redux project",
-    "themeColor": "#00bcd4"
-  },
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.8.3",
-    "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^2.0.0",
-    "csstype": "^3.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hot-toast": "^2.3.0",
-    "react-icons": "^4.4.0",
-    "react-redux": "^8.0.2",
-    "react-router": "^6.3.0",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
-    "rimraf": "^3.0.2",
-    "vite-plugin-checker": "^0.4.9",
-    "vite-plugin-environment": "^1.1.2",
-    "vite-plugin-html": "^3.2.0",
-    "web-vitals": "^2.1.4"
-  },
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.4",
-    "@types/node": "^18.0.6",
-    "autoprefixer": "^10.4.7",
-    "cross-env": "^7.0.3",
-    "daisyui": "^2.19.0",
-    "eslint": "^8.20.0",
-    "eslint-config-react-app": "^7.0.1",
-    "postcss": "^8.4.14",
-    "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.12",
-    "tailwindcss": "^3.1.6",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.7.4",
-    "vite": "^3.0.2",
-    "vite-plugin-mkcert": "^1.8.1",
-    "vite-plugin-pwa": "^0.12.3",
-    "workbox-window": "^6.5.3"
-  },
-  "scripts": {
-    "prestart": "ts-node aspnetcore-https && ts-node aspnetcore-react",
-    "start": "rimraf ./build && vite",
-    "build": "eslint ./src/ && tsc && vite build",
-    "test": "cross-env CI=true react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "lint": "eslint ./src/"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "myreduxtemplate",
+	"version": "0.1.2",
+	"private": true,
+	"homepage": ".",
+	"htmlData": {
+		"title": "My Redux Template",
+		"description": "A template for a redux project",
+		"themeColor": "#00bcd4"
+	},
+	"dependencies": {
+		"@reduxjs/toolkit": "^1.8.3",
+		"@types/react": "^18.0.15",
+		"@types/react-dom": "^18.0.6",
+		"@vitejs/plugin-react": "^2.0.0",
+		"csstype": "^3.1.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-hot-toast": "^2.3.0",
+		"react-icons": "^4.4.0",
+		"react-redux": "^8.0.2",
+		"react-router": "^6.3.0",
+		"react-router-dom": "^6.3.0",
+		"react-scripts": "^5.0.1",
+		"rimraf": "^3.0.2",
+		"vite-plugin-checker": "^0.4.9",
+		"vite-plugin-environment": "^1.1.2",
+		"vite-plugin-html": "^3.2.0",
+		"web-vitals": "^2.1.4",
+		"workbox-core": "^6.5.3",
+		"workbox-precaching": "^6.5.3",
+		"workbox-routing": "^6.5.3",
+		"workbox-strategies": "^6.5.3"
+	},
+	"devDependencies": {
+		"@tailwindcss/typography": "^0.5.4",
+		"@types/node": "^18.0.6",
+		"autoprefixer": "^10.4.7",
+		"cross-env": "^7.0.3",
+		"daisyui": "^2.19.1",
+		"eslint": "^8.20.0",
+		"eslint-config-react-app": "^7.0.1",
+		"postcss": "^8.4.14",
+		"prettier": "^2.7.1",
+		"prettier-plugin-tailwindcss": "^0.1.12",
+		"tailwindcss": "^3.1.6",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.7.4",
+		"vite": "^3.0.2",
+		"vite-plugin-mkcert": "^1.9.0",
+		"vite-plugin-pwa": "^0.12.3",
+		"workbox-window": "^6.5.3"
+	},
+	"scripts": {
+		"prestart": "npm run prestart:https && npm run prestart:react",
+		"prestart:https": "ts-node --project tsconfig.node.json aspnetcore-https",
+		"prestart:react": "ts-node --project tsconfig.node.json aspnetcore-react",
+		"start": "rimraf ./build && vite",
+		"build": "eslint ./src/ && tsc && vite build",
+		"test": "cross-env CI=true react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"lint": "eslint ./src/"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }

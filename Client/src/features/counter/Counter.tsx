@@ -7,7 +7,7 @@ const Counter: React.FC = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <div className='counter p-10'>
+        <div className='container mx-auto'>
             <div className='space-y-4'>
                 <h1 className='text-xl font-semibold'>Counter</h1>
 

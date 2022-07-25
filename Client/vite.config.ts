@@ -16,6 +16,7 @@ export default ({ mode }) => {
 	const isDev = mode === 'development';
 	const base = !isDev && pkg.homepage !== '.' ? `${pkg.homepage}/` : undefined;
 
+
 	const proxyTarget = process.env.ASPNETCORE_HTTPS_PORT
 		? `https://localhost:${process.env.ASPNETCORE_HTTPS_PORT}`
 		: process.env.ASPNETCORE_URLS
@@ -84,15 +85,16 @@ export default ({ mode }) => {
 				},
 			}),
 			VitePWA({
+				strategies: 'injectManifest',
+				srcDir: 'src',
+				filename: 'sw.ts',
 				includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
 				manifest: {
 					scope: base,
 					name: pkg.htmlData.title,
 					short_name: pkg.htmlData.title,
 					description: pkg.htmlData.description,
-					lang: 'en',
 					start_url: './',
-					display: 'standalone',
 					background_color: pkg.htmlData.themeColor,
 					theme_color: pkg.htmlData.themeColor,
 					icons: [
@@ -107,6 +109,10 @@ export default ({ mode }) => {
 							type: 'image/png',
 						},
 					],
+				},
+				devOptions: {
+					enabled: true,
+					type: 'module',
 				},
 			}),
 			EnvironmentPlugin('all', { prefix: 'ASPNETCORE_' }),
